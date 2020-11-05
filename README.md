@@ -8,7 +8,7 @@ Shell add-on over dd.
 ![Screenshot](https://cs05.spac.me/f/087069048125087123181077169255042197255015203119156239075033085175/1604618412/83271562/0/c800490b2dea3ef3a66fbee63d28959a/wiso3-spaces.im.png)
 # Install
 1) git clone https://github.com/uriid1/wiso/
-2) cd wiso_1.0
+2) cd wiso
 3) chmod +x install
 4) sudo ./install
 5) Done!
