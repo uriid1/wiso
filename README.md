@@ -17,10 +17,10 @@ This project uses the free utilities included in most linux distributions and th
 
 # Install
 1) git clone https://github.com/uriid1/wiso/
-2) cd wiso/wiso_1.0
+2) cd wiso
 3) chmod +x install
 4) sudo ./install
-5) Done!
+5) Done! Delele wiso folder.
 
 # Using
 Open a terminal and run wiso. After that, just follow the instructions.
