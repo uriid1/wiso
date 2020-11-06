@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Install
-chmod +x wiso
-sudo cp wiso /usr/bin
-echo "wiso installed successfully!"
