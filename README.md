@@ -2,11 +2,11 @@
 Shell add-on over dd.
 
 This project uses the free utilities included in most linux distributions and the linux kernel.
-    find
-    readlink
-    lsblk
-    sed
-    dd
+ (find,
+ readlink,
+ lsblk,
+ sed,
+ dd.)
  The script is written for bash version 5.0 and older.
 
 ![Screenshot](https://cs00.spac.me/f/087069048125087123181077169255042197255015203119156239075033085175/1604683484/83276199/0/ab5435e7c88abcb112df662901dbf291/wiso1-spaces.im.png)
