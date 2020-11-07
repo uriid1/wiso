@@ -31,7 +31,7 @@ write_iso() {
 find_iso() {
 	clear
 	echo -e "Found iso: \n"
-	iso_list+=( $(find /home/$USER -type f -name *.iso) )
+	iso_list+=( $(find /home/$USER -type f -name '*.iso') )
 	
 	# Если нашли хоть один образ
 	if [ -n  "${iso_list[0]}" ];
