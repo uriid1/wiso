@@ -27,3 +27,20 @@ Open a terminal and run wiso. After that, just follow the instructions.
 
 # Uninstall
 sudo rm /usr/bin/wiso
+
+# Version
+1.0.0
+- Release
+
+1.0.1
+- Fix small bug
+
+1.0.2
+- Added recursive search
+
+1.0.3
+- Improved design
+
+1.0.4
+- Fixed a bug with the recording
+- Improved the installer
