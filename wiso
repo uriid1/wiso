@@ -1,14 +1,14 @@
 # !/bin/bash
 
 #//******************************//#
-#//# Author: by uriid1		#//#
-#//# license: GNU GPL		#//#
-#//# telegram: uriid1		#//#
+#//# Author: by uriid1			#//#
+#//# license: GNU GPL			#//#
+#//# telegram: uriid1			#//#
 #//# Mail: appdurov@gmail.com	#//#
 ####****************************####
 
 # Константы
-version="1.0.3"
+version="1.0.4"
 c_yellow='\033[1;33m'
 c_green='\033[1;32m'
 c_def='\033[0m'
@@ -24,14 +24,16 @@ write_iso() {
 	echo "  USB: ${usb_name_list_sed[$usb_index]}"
 	echo -e "  ISO: ${iso_list[$iso]} \n"
 	echo -e "Enter the password for recording the image \n"
-	sudo dd bs=4M if=${iso_list[$iso]} of=/dev/$usb_index status=progress oflag=sync
+	
+	sudo wipefs --all ${usb_mount_list[$usb_index]}
+	sudo dd bs=4M if=${iso_list[$iso]} of=${usb_mount_list[$usb_index]} status=progress oflag=sync
 }
 
 # Функция поиска iso образов
 find_iso() {
 	clear
 	echo -e "Found iso: \n"
-	iso_list+=( $(find /home/$USER -type f -name '*.iso') )
+	iso_list+=( $(find /home/$USER -type f -name *.iso) )
 	
 	# Если нашли хоть один образ
 	if [ -n  "${iso_list[0]}" ];
