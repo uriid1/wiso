@@ -3,4 +3,9 @@
 # Install
 chmod +x wiso
 sudo cp wiso /usr/bin
-echo "wiso installed successfully!"
+if [ -e /usr/bin/wiso ]
+then
+	echo "wiso installed successfully!"
+else
+	echo -e "You may have entered the wrong password. \n Either wiso is already installed."
+fi
