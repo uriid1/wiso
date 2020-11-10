@@ -28,7 +28,7 @@ Open a terminal and run wiso. After that, just follow the instructions.
 # Uninstall
 sudo rm /usr/bin/wiso
 
-# Version
+# Versions
 1.0.0
 - Release
 
