@@ -9,11 +9,11 @@ This project uses the free utilities included in most linux distributions and th
  dd.)
  The script is written for bash version 5.0 and older.
 
-![Screenshot](https://cs00.spac.me/f/087069048125087123181077169255042197255015203119156239075033085175/1604683484/83276199/0/ab5435e7c88abcb112df662901dbf291/wiso1-spaces.im.png)
+![Screenshot](https://github.com/uriid1/scrfmp/blob/main/wiso/wiso1.png)
 
-![Screenshot](https://cs10.spac.me/f/087069048125087123181077169255042197255015203119156239075033085175/1604683496/83276200/0/807ad9d553978fb8d74b9376c3d2de86/wiso2-spaces.im.png)
+![Screenshot](https://github.com/uriid1/scrfmp/blob/main/wiso/wiso2.png)
 
-![Screenshot](https://cs00.spac.me/f/087069048125087123181077169255042197255015203119156239075033085175/1604683511/83276201/0/a6f57d1508673fb96ed386fea352e92f/wiso3-spaces.im.png)
+![Screenshot](https://github.com/uriid1/scrfmp/blob/main/wiso/wiso3.png)
 
 # Install
 1) git clone https://github.com/uriid1/wiso/
