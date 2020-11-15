@@ -1,11 +1,17 @@
 #!/bin/bash
 
+# Programm name
+pname='wiso'
+
 # Install
-chmod +x wiso
-sudo cp wiso /usr/bin
-if [ -e /usr/bin/wiso ]
+chmod +x $pname
+sudo cp $pname /usr/bin
+
+# Check
+if [ -e /usr/bin/$pname ]
 then
-	echo "wiso installed successfully!"
+    echo "$pname installed successfully!"
 else
-	echo -e "You may have entered the wrong password. \n Either wiso is already installed."
+    echo -e "You may have entered the wrong password. \n Either $pname is already installed."
 fi
+
