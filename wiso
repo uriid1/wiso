@@ -8,30 +8,71 @@
 ####****************************####
 
 # Константы
-version="1.0.4"
-c_yellow='\033[1;33m'
-c_green='\033[1;32m'
-c_def='\033[0m'
+readonly version="1.0.8"
+readonly c_error='\033[5m'
+readonly c_yellow='\033[33m'
+readonly c_red='\033[31m'
+readonly c_green='\033[32m'
+readonly c_def='\033[0m'
 
-#
-clear
-echo -e "${c_green} Iso Writer by uriid1 ${c_def} | ${c_yellow} version: $version ${c_def} \n"
+# Глобальные var
+__error=0
+__find=0
+
+# Отображение важной информации
+head_info() {
+	clear
+	echo -e "${c_green} Iso Writer by uriid1 ${c_def} | ${c_yellow} version: $version ${c_def} \n"
+}
+
+# Проверяем существование програм в ос
+head_info
+list_spo=(dd readlink grep find sed lsblk wipefs head)
+
+echo -e "Сhecking the availability of the necessary tools: \n"
+for ((i = 0; i < ${#list_spo[*]}; ++i))
+do
+	spo_check() {
+		__ok="none"
+		local pname=$(which $1 . 2>/dev/null)
+		if [ -n "$pname" ]; then
+			__ok="${c_green} Ok ${c_def}"
+		else
+			__ok="${c_error}${c_red} Fail ${c_def}"
+			__error=$((__error + 1))
+		fi
+	}
+	spo_check ${list_spo[$i]}
+	spo_info+=( $(echo "|${list_spo[$i]}|-|$__ok| \n") )
+	
+	if [ "$i" -eq "$((${#list_spo[*]}-1))" ]; then
+		if [ "$__error" -eq "0" ]; then
+			__find=1
+		fi
+	fi
+	
+done
+
+# Выводим красиво инфу о сущ. по
+echo -e "${spo_info[@]}" | column -t -s '|'
+echo -e "\n"
+sleep 1
 
 # Функция записи iso на флешку 
 write_iso() {
-	clear
+	head_info
 	echo -e "You have chosen: \n"
-	echo "  USB: ${usb_name_list_sed[$usb_index]}"
+	echo 	"  USB: ${usb_name_list_sed[$usb_index]}"
 	echo -e "  ISO: ${iso_list[$iso]} \n"
 	echo -e "Enter the password for recording the image \n"
 	
-	sudo wipefs --all ${usb_mount_list[$usb_index]}
+	sudo wipefs --all ${usb_mount_list[$usb_index]} . 2>/dev/null
 	sudo dd bs=4M if=${iso_list[$iso]} of=${usb_mount_list[$usb_index]} status=progress oflag=sync
 }
 
 # Функция поиска iso образов
 find_iso() {
-	clear
+	head_info
 	echo -e "Found iso: \n"
 	iso_list+=( $(find /home/$USER -type f -name "*.iso") )
 	
@@ -56,14 +97,21 @@ find_iso() {
 	fi
 }
 
-# Получаем список подключённых USB
-for i in /dev/disk/by-id/usb*
-do
-    usb_name_list+=( $(echo $i | sed '/part/d') )
-done
+# Если всё ПО есть
+if [ "$__find" -eq "1" ];
+then
+	head_info
+	# Получаем список подключённых USB
+	for i in /dev/disk/by-id/usb*
+	do
+		usb_name_list+=( $(echo $i | sed '/part/d') )
+	done
+else
+	echo -e "Oops! it Seems you don't have all the Software installed... \n"
+fi
 
 # В случае если нашли хоть одну флешку
-if [ "${usb_name_list[0]}" != "/dev/disk/by-id/usb*" ];
+if [ "${usb_name_list[0]}" != "/dev/disk/by-id/usb*" ] && [ "$__find" -eq "1" ];
 then
 	# Форматируем в вид для домохозяйки
 	for ((i = 0; i < ${#usb_name_list[*]}; ++i))
@@ -97,5 +145,5 @@ then
 		exec "$0" && exit 0
 	fi
 else
-	echo -e "No USB devices were identified! \n"
+	echo -e "No USB devices were identified! Errors found: $__error \n"
 fi
